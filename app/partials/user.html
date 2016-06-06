@@ -1,0 +1,38 @@
+<div class="col-md-4" style="margin-top: 20px;">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Webhook</label>
+            <div class="col-sm-9" ng-class="{'has-warning': $parent.error && !$parent.webhook}">
+                <input ng-model="$parent.webhook" type="text" class="form-control" placeholder="http://127.0.0.1:8080/telegram/token">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">User ID</label>
+            <div class="col-sm-9" ng-class="{'has-warning': $parent.error && !$parent.userId}">
+                <input ng-model="$parent.userId" type="number" class="form-control" placeholder="0">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">First Name</label>
+            <div class="col-sm-9" ng-class="{'has-warning': $parent.error && !$parent.firstName}">
+                <input ng-model="$parent.firstName" type="text" class="form-control" placeholder="Hedy">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Username</label>
+            <div class="col-sm-9" ng-class="{'has-warning': $parent.error && !$parent.userName}">
+                <input ng-model="$parent.userName" type="text" class="form-control" placeholder="hedy14">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Phone</label>
+            <div class="col-sm-9" ng-class="{'has-warning': $parent.error && !$parent.phone}">
+                <input ng-model="$parent.phone" type="text" class="form-control"  placeholder="+19177568000">
+            </div>
+        </div>
+    </form>
+</div>

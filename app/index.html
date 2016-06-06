@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Howdy!</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/angular.js"></script>
+    <script src="/static/js/angular-websocket.js"></script>
+    <script src="/static/js/app.js"></script>
+</head>
+
+<body>
+    <div ng-app="Howdy">
+        <div ng-controller="ChatCtrl">
+            <div ng-show="error" class="col-md-12 text-center alert alert-warning">
+                <strong class="text-warning">Please fill missing fields</strong>
+            </div>
+            <ng-include src="'partials/user.html'"></ng-include>
+            <ng-include src="'partials/chat.html'"></ng-include>
+        </div>
+    </div>
+</body>
+</html>

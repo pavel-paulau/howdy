@@ -1,0 +1,65 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"path": "context",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "iIUYZyoanCQQTUaWsu8b+iOSPt4=",
+			"path": "github.com/gorilla/context",
+			"revision": "aed02d124ae4a0e94fea4541c8effd05bf0c8296",
+			"revisionTime": "2016-05-25T20:33:19Z"
+		},
+		{
+			"checksumSHA1": "H5f7qNqZl8N83s9cyC7Q1eWgAtI=",
+			"path": "github.com/gorilla/mux",
+			"revision": "9fa818a44c2bf1396a17f9d5a3c0f6dd39d2ff8e",
+			"revisionTime": "2016-06-05T23:35:21Z"
+		},
+		{
+			"checksumSHA1": "dyGQP5AipmInoTQmnqvbFmUORpk=",
+			"path": "github.com/gorilla/websocket",
+			"revision": "3ddc98405808dc90b76f43a2eddca8f12e244e2b",
+			"revisionTime": "2016-06-01T05:17:19Z"
+		},
+		{
+			"checksumSHA1": "6wAWOVRtaH7hX48hmw9o7noyy5Q=",
+			"path": "github.com/mattn/go-colorable",
+			"revision": "9056b7a9f2d1f2d96498d6d146acd1f9d5ed3d59",
+			"revisionTime": "2016-06-02T15:08:27Z"
+		},
+		{
+			"checksumSHA1": "NkbetqlpWBi3gP08JDneC+axTKw=",
+			"path": "github.com/mattn/go-isatty",
+			"revision": "56b76bdf51f7708750eac80fa38b952bb9f32639",
+			"revisionTime": "2015-12-11T00:06:21Z"
+		},
+		{
+			"checksumSHA1": "QcDlr1sWBDt6Dn/v7W/MRgccAi4=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "076b546753157f758b316e59bcb51e6807c04057",
+			"revisionTime": "2016-06-01T13:19:39Z"
+		},
+		{
+			"checksumSHA1": "lxnYI7ISNsR6jZLOGRURNlUiSNs=",
+			"path": "gopkg.in/inconshreveable/log15.v2",
+			"revision": "b105bd37f74e5d9dc7b6ad7806715c7a2b83fd3f",
+			"revisionTime": "2015-09-21T21:38:54Z"
+		},
+		{
+			"checksumSHA1": "piw2kSgPAMwvuUVfiTO8Ih2a6QY=",
+			"path": "gopkg.in/inconshreveable/log15.v2/stack",
+			"revision": "b105bd37f74e5d9dc7b6ad7806715c7a2b83fd3f",
+			"revisionTime": "2015-09-21T21:38:54Z"
+		},
+		{
+			"checksumSHA1": "/hR7Dh3kAiDFl4NGSogz0ctxBkE=",
+			"path": "gopkg.in/inconshreveable/log15.v2/term",
+			"revision": "b105bd37f74e5d9dc7b6ad7806715c7a2b83fd3f",
+			"revisionTime": "2015-09-21T21:38:54Z"
+		}
+	],
+	"rootPath": "github.com/pavel-paulau/howdy"
+}

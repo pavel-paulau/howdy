@@ -1,0 +1,20 @@
+<div class="col-md-6 col-md-offset-1" style="margin-top: 20px;">
+    <div class="input-group" ng-class="{'has-warning': $parent.error && !$parent.sentMessage}">
+        <input ng-model="$parent.message" type="text" class="form-control" placeholder="{{$parent.sentMessage}}">
+        <span class="input-group-btn">
+            <button class="btn btn-success" type="button" ng-click="SendMessage()">Send</button>
+        </span>
+    </div>
+
+    <div ng-repeat="response in $parent.responses" style="margin-top: 20px;">
+        <pre>{{response}}</pre>
+    </div>
+
+    <div ng-repeat="button in $parent.buttons" style="margin-top: 20px;">
+        <div class="col-sm-8 col-sm-offset-2">
+            <button class="btn btn-default" style="width: 100%; margin-top: 10px;" type="button" ng-click="SendButton(button)">
+                {{button}}
+            </button>
+        </div>
+    </div>
+</div>

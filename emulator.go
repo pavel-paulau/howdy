@@ -71,9 +71,9 @@ func sendUpdateToBot(message ChatMessage) {
 		Message: Message{
 			Text: message.Text,
 			From: User{
-				FirstName: "name",
+				FirstName: message.FirstName,
 				ID:        message.UserId,
-				Username:  "username",
+				Username:  message.UserName,
 			},
 		},
 		UpdateID: 0,

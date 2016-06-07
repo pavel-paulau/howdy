@@ -7,4 +7,4 @@ fmt:
 	find . -name "*.go" | xargs gofmt -w -s
 
 clean:
-	rm -fr howdy
+	rm -fr howdy build

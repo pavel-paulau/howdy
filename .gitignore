@@ -25,6 +25,8 @@ howdy
 
 .idea
 
+build
+
 vendor/bitbucket.org
 vendor/github.com
 vendor/golang.org

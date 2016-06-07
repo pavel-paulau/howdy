@@ -19,15 +19,6 @@ type chatMessage struct {
 	Webhook   string `json:"webhook"`
 }
 
-func readBody(req *http.Request, payload interface{}) error {
-	decoder := json.NewDecoder(req.Body)
-	err := decoder.Decode(payload)
-	if err != nil {
-		log.Error("failed to parse body", "err", err)
-	}
-	return err
-}
-
 func forwardMessages(rw http.ResponseWriter, req *http.Request) {
 	var upgrader = websocket.Upgrader{
 		ReadBufferSize:  1024,
@@ -45,14 +36,14 @@ func forwardMessages(rw http.ResponseWriter, req *http.Request) {
 		defer conn.Close()
 
 		for {
-			botResponse := <-messages
+			repsponse := <-messages
 
 			if !isOpen {
-				messages <- botResponse
+				messages <- repsponse
 				break
 			}
 
-			if err := conn.WriteJSON(&botResponse); err != nil {
+			if err := conn.WriteJSON(&repsponse); err != nil {
 				log.Error("failed to write data", "err", err)
 				break
 			}
@@ -90,19 +81,22 @@ func sendUpdateToBot(message chatMessage) {
 		UpdateID: updateID,
 	}
 
-	if _, err := sendJSON(message.Webhook, &update); err != nil {
+	if _, err := SendJSON(message.Webhook, &update); err != nil {
 		log.Error("failed to send update", "err", err)
 	}
 }
 
 func mockTelegram(rw http.ResponseWriter, req *http.Request) {
-	var botResponse botResponse
-	readBody(req, &botResponse)
+	var br botResponse
+	var tr telegramResponse
 
-	messages <- botResponse
-
-	response := telegramResponse{
-		OK: true,
+	if err := ReadJSON(req, &br); err != nil {
+		log.Error(err.Error())
+		tr = telegramResponse{OK: false}
+	} else {
+		messages <- br
+		tr = telegramResponse{OK: true}
 	}
-	json.NewEncoder(rw).Encode(&response)
+
+	json.NewEncoder(rw).Encode(&tr)
 }

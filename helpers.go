@@ -11,12 +11,23 @@ import (
 	log "gopkg.in/inconshreveable/log15.v2"
 )
 
+// ReadJSON reads JSON-encoded payload from HTTP request
+func ReadJSON(req *http.Request, payload interface{}) error {
+	decoder := json.NewDecoder(req.Body)
+	err := decoder.Decode(payload)
+	if err != nil {
+		log.Error("failed to parse body", "err", err)
+	}
+	return err
+}
+
 func badResponse(statusCode int) error {
 	msg := fmt.Sprintf("bad response: %d", statusCode)
 	return errors.New(msg)
 }
 
-func sendJSON(url string, body interface{}) ([]byte, error) {
+// SendJSON sends an HTTP request with a JSON-encoded body
+func SendJSON(url string, body interface{}) ([]byte, error) {
 	client := &http.Client{}
 
 	b, err := json.Marshal(body)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"bitbucket.org/tebeka/nrsc"
 )
 
 const (
@@ -16,18 +16,20 @@ var (
 )
 
 func init() {
-	banner := fmt.Sprintf("\n\t.:: Serving http://%s/ ::.\n", address)
+	banner := fmt.Sprintf("\n\t.:: Please go to http://%s/index.html ::.\n", address)
 	fmt.Println(banner)
 }
 
 func main() {
 	messages = make(chan BotResponse, 10)
 
-	r := mux.NewRouter()
-	r.HandleFunc("/webhook", forwardMessages)
-	r.HandleFunc("/bottoken/sendMessage", mockTelegram).Methods("POST")
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./app")))
+	http.HandleFunc("/webhook", forwardMessages)
+	http.HandleFunc("/bottoken/sendMessage", mockTelegram)
+	nrsc.Handle("/")
 
-	http.Handle("/", r)
-	http.ListenAndServe(address, accessLog(http.DefaultServeMux))
+	handler := accessLog(http.DefaultServeMux)
+
+	if err := http.ListenAndServe(address, handler); err != nil {
+		fmt.Println(err)
+	}
 }

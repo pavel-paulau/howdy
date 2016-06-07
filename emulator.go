@@ -8,6 +8,8 @@ import (
 	log "gopkg.in/inconshreveable/log15.v2"
 )
 
+var updateID int
+
 type chatMessage struct {
 	Text      string `json:"text"`
 	FirstName string `json:"firstName"`
@@ -75,6 +77,8 @@ func forwardMessages(rw http.ResponseWriter, req *http.Request) {
 }
 
 func sendUpdateToBot(message chatMessage) {
+	updateID++
+
 	update := Update{
 		Message: Message{
 			Text: message.Text,
@@ -83,7 +87,7 @@ func sendUpdateToBot(message chatMessage) {
 				ID:        message.UserID,
 			},
 		},
-		UpdateID: 0,
+		UpdateID: updateID,
 	}
 
 	if _, err := sendJSON(message.Webhook, &update); err != nil {

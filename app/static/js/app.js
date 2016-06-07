@@ -14,16 +14,20 @@ function ChatCtrl($scope, $websocket) {
         $scope.responses.push(response.text);
         $scope.buttons = [];
 
-        var keyboard = response.reply_markup.keyboard;
+        if (response.reply_markup) {
+            $scope.showKeyboard(response.reply_markup.keyboard)
+        }
+    });
 
+    $scope.showKeyboard = function (keyboard) {
         for (var i = 0; i < keyboard.length; i++) {
             for (var j = 0; j < keyboard[i].length; j++) {
                 $scope.buttons.push(keyboard[i][j].text);
             }
         }
-    });
+    };
 
-    $scope.SendMessage = function SendMessage() {
+    $scope.sendMessage = function () {
         $scope.sentMessage = $scope.message;
 
         $scope.validate();
@@ -33,7 +37,7 @@ function ChatCtrl($scope, $websocket) {
         }
     };
 
-    $scope.SendButton = function SendButton(button) {
+    $scope.sendButton = function (button) {
         $scope.sentMessage = button;
 
         $scope.validate();
@@ -43,7 +47,7 @@ function ChatCtrl($scope, $websocket) {
         }
     };
 
-    $scope.validate = function validate() {
+    $scope.validate = function () {
         $scope.error =
             !$scope.sentMessage ||
             $scope.userId === undefined ||
@@ -51,7 +55,7 @@ function ChatCtrl($scope, $websocket) {
             !$scope.firstName;
     };
 
-    $scope.send = function send() {
+    $scope.send = function () {
         $scope.message = '';
         $scope.responses = [];
 

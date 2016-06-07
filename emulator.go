@@ -95,6 +95,10 @@ func sendUpdateToBot(message chatMessage) {
 				FirstName: message.FirstName,
 				ID:        message.UserID,
 			},
+			Contact: telegram.Contact{
+				FirstName:   message.FirstName,
+				PhoneNumber: message.Phone,
+			},
 		},
 		UpdateID: updateID,
 	}

@@ -8,17 +8,13 @@ import (
 )
 
 const (
-	address = "127.0.0.1:8081"
+	address = ":8081"
+	banner  = "\n\t.:: Please go to http://127.0.0.1:8081/index.html ::.\n"
 )
 
 var (
 	messages chan botResponse
 )
-
-func init() {
-	banner := fmt.Sprintf("\n\t.:: Please go to http://%s/index.html ::.\n", address)
-	fmt.Println(banner)
-}
 
 func main() {
 	messages = make(chan botResponse, 10)
@@ -29,6 +25,7 @@ func main() {
 
 	handler := accessLog(http.DefaultServeMux)
 
+	fmt.Println(banner)
 	if err := http.ListenAndServe(address, handler); err != nil {
 		fmt.Println(err)
 	}

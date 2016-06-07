@@ -6,9 +6,17 @@ import (
 
 	"github.com/gorilla/websocket"
 	log "gopkg.in/inconshreveable/log15.v2"
+
+	"github.com/pavel-paulau/howdy/telegram"
 )
 
-var updateID int
+var (
+	updateID int
+)
+
+func init() {
+	messages = make(chan botResponse, 10)
+}
 
 type chatMessage struct {
 	Text      string `json:"text"`
@@ -17,6 +25,16 @@ type chatMessage struct {
 	UserID    int    `json:"userId"`
 	Phone     string `json:"phone"`
 	Webhook   string `json:"webhook"`
+}
+
+type telegramResponse struct {
+	OK bool `json:"ok"`
+}
+
+type botResponse struct {
+	ChatID      int         `json:"chat_id"`      // Unique identifier for the target chat
+	Text        string      `json:"text"`         // Text of the message to be sent
+	ReplyMarkup interface{} `json:"reply_markup"` // Additional interface options.
 }
 
 func forwardMessages(rw http.ResponseWriter, req *http.Request) {
@@ -70,10 +88,10 @@ func forwardMessages(rw http.ResponseWriter, req *http.Request) {
 func sendUpdateToBot(message chatMessage) {
 	updateID++
 
-	update := Update{
-		Message: Message{
+	update := telegram.Update{
+		Message: telegram.Message{
 			Text: message.Text,
-			From: User{
+			From: telegram.User{
 				FirstName: message.FirstName,
 				ID:        message.UserID,
 			},

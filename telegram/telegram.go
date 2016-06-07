@@ -1,4 +1,4 @@
-package main
+package telegram
 
 // User object represents a Telegram user or bot.
 //
@@ -64,14 +64,4 @@ type ReplyKeyboardMarkup struct {
 type KeyboardButton struct {
 	Text           string `json:"text"`            // Text of the button
 	RequestContact bool   `json:"request_contact"` // If True, the user's phone number will be sent as a contact
-}
-
-type telegramResponse struct {
-	OK bool `json:"ok"`
-}
-
-type botResponse struct {
-	ChatID      int         `json:"chat_id"`      // Unique identifier for the target chat
-	Text        string      `json:"text"`         // Text of the message to be sent
-	ReplyMarkup interface{} `json:"reply_markup"` // Additional interface options.
 }

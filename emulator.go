@@ -8,11 +8,11 @@ import (
 	log "gopkg.in/inconshreveable/log15.v2"
 )
 
-type ChatMessage struct {
+type chatMessage struct {
 	Text      string `json:"text"`
 	FirstName string `json:"firstName"`
 	UserName  string `json:"userName"`
-	UserId    int    `json:"userId"`
+	UserID    int    `json:"userId"`
 	Phone     string `json:"phone"`
 	Webhook   string `json:"webhook"`
 }
@@ -64,7 +64,7 @@ func forwardMessages(rw http.ResponseWriter, req *http.Request) {
 		}()
 
 		for {
-			var message ChatMessage
+			var message chatMessage
 			if err := conn.ReadJSON(&message); err != nil {
 				log.Error("failed to read data", "err", err)
 				break
@@ -74,14 +74,13 @@ func forwardMessages(rw http.ResponseWriter, req *http.Request) {
 	}()
 }
 
-func sendUpdateToBot(message ChatMessage) {
+func sendUpdateToBot(message chatMessage) {
 	update := Update{
 		Message: Message{
 			Text: message.Text,
 			From: User{
 				FirstName: message.FirstName,
-				ID:        message.UserId,
-				Username:  message.UserName,
+				ID:        message.UserID,
 			},
 		},
 		UpdateID: 0,
@@ -93,14 +92,13 @@ func sendUpdateToBot(message ChatMessage) {
 }
 
 func mockTelegram(rw http.ResponseWriter, req *http.Request) {
-	var botResponse BotResponse
+	var botResponse botResponse
 	readBody(req, &botResponse)
 
 	messages <- botResponse
 
-	response := TelegramResponse{
-		OK:     true,
-		Result: Message{}, // FIXME
+	response := telegramResponse{
+		OK: true,
 	}
 	json.NewEncoder(rw).Encode(&response)
 }

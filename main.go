@@ -12,7 +12,7 @@ const (
 )
 
 var (
-	messages chan BotResponse
+	messages chan botResponse
 )
 
 func init() {
@@ -21,7 +21,7 @@ func init() {
 }
 
 func main() {
-	messages = make(chan BotResponse, 10)
+	messages = make(chan botResponse, 10)
 
 	http.HandleFunc("/webhook", forwardMessages)
 	http.HandleFunc("/bottoken/sendMessage", mockTelegram)

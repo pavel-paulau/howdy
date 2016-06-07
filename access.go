@@ -8,25 +8,25 @@ import (
 	log "gopkg.in/inconshreveable/log15.v2"
 )
 
-type ResponseWriterWrapper struct {
+type responseWriterWrapper struct {
 	rw     http.ResponseWriter
 	status int
 }
 
-func (r *ResponseWriterWrapper) Write(p []byte) (int, error) {
+func (r *responseWriterWrapper) Write(p []byte) (int, error) {
 	return r.rw.Write(p)
 }
 
-func (r *ResponseWriterWrapper) Header() http.Header {
+func (r *responseWriterWrapper) Header() http.Header {
 	return r.rw.Header()
 }
 
-func (r *ResponseWriterWrapper) WriteHeader(status int) {
+func (r *responseWriterWrapper) WriteHeader(status int) {
 	r.status = status
 	r.rw.WriteHeader(status)
 }
 
-func (r *ResponseWriterWrapper) Hijack() (net.Conn, *bufio.ReadWriter, error) {
+func (r *responseWriterWrapper) Hijack() (net.Conn, *bufio.ReadWriter, error) {
 	h := r.rw.(http.Hijacker)
 	return h.Hijack()
 }
@@ -38,7 +38,7 @@ func accessLog(handler http.Handler) http.Handler {
 			"path", req.URL.Path,
 		)
 
-		rww := ResponseWriterWrapper{rw, 200}
+		rww := responseWriterWrapper{rw, 200}
 		handler.ServeHTTP(&rww, req)
 
 		log.Info("processed request",

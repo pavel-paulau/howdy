@@ -48,9 +48,7 @@ function ChatCtrl($scope, $websocket) {
             !$scope.sentMessage ||
             $scope.userId === undefined ||
             !$scope.webhook ||
-            !$scope.firstName ||
-            !$scope.userName ||
-            !$scope.phone;
+            !$scope.firstName;
     };
 
     $scope.send = function send() {
@@ -62,7 +60,6 @@ function ChatCtrl($scope, $websocket) {
             userId: $scope.userId,
             webhook: $scope.webhook,
             firstName: $scope.firstName,
-            userName: $scope.userName,
             phone: $scope.phone
         });
 

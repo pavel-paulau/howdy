@@ -40,8 +40,16 @@ Usage
 -----
 
 Simply follow these steps:
-* Modify your bot so that it uses "http://127.0.0.1:8081/" instead of "https://api.telegram.org/"
-* Use "token" as an authentication token
-* Start both chat bot and bot emulator
-* Navigate to "http://127.0.0.1:8081/index.html" in your favourite browser
+* Modify your bot so that it uses "http://127.0.0.1:8081/" instead of "https://api.telegram.org/".
+* Use "token" as an authentication token.
+* Start both chat bot and bot emulator.
+* Navigate to "http://127.0.0.1:8081/index.html" in your favorite browser.
 * Enjoy!
+
+Limitations (aka to-do list)
+---------------------------
+
+Currently, there are a couple limitations:
+* Not all Telegram API are covered yet. For instance, it's not possible to send images or stickers.
+* Only one active client is supported.
+* Keyboard layout is ignored (all buttons are displayed as a column).

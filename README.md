@@ -6,7 +6,7 @@ Telegram Chat Bot Emulator
 Demo
 ----
 
-[![Howdy Demo](http://img.youtube.com/vi/nVvvGp0HtbQ/0.jpg)](http://www.youtube.com/watch?v=nVvvGp0HtbQ)
+[![Howdy Demo](http://i.imgur.com/yXufef8.png)](http://www.youtube.com/watch?v=nVvvGp0HtbQ)
 
 Installation
 ------------
@@ -21,12 +21,11 @@ $ ./howdy_linux_amd64
 	.:: Please go to http://127.0.0.1:8081/index.html ::.
 ```
 
-Alternatively, you can pull the latest Docker image:
+Alternatively, you can pull the latest [Docker image](https://hub.docker.com/r/pavel/howdy/):
 
 ```
 $ docker pull pavel/howdy
 $ docker run -t -i --net="host" -p 8081:8081 pavel/howdy
 
 	.:: Please go to http://127.0.0.1:8081/index.html ::.
-
 ```

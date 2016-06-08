@@ -1,4 +1,4 @@
-.PHONY: build clean fmt
+.PHONY: build bot
 
 build:
 	go build -v && nrsc howdy app

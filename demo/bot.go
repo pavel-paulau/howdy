@@ -52,7 +52,7 @@ func sendMessage(chatID int, text string) {
 
 	message := chatMessage{chatID, text, "HTML"}
 
-	if _, err := SendJSON(sendMessageURL, &message); err != nil {
+	if err := SendJSON(sendMessageURL, &message); err != nil {
 		log.Error("failed to send update", "err", err)
 	}
 }
@@ -68,7 +68,7 @@ func sendKeyboard(chatID int, text string, keyboard telegram.ReplyKeyboardMarkup
 
 	message := chatMessageWithKeyboard{chatID, text, keyboard}
 
-	if _, err := SendJSON(sendMessageURL, &message); err != nil {
+	if err := SendJSON(sendMessageURL, &message); err != nil {
 		log.Error("failed to send update", "err", err)
 	}
 }

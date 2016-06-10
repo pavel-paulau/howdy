@@ -111,7 +111,7 @@ func sendUpdateToBot(message chatMessage) {
 		UpdateID: updateID,
 	}
 
-	if _, err := SendJSON(message.Webhook, &update); err != nil {
+	if err := SendJSON(message.Webhook, &update); err != nil {
 		log.Error("failed to send update", "err", err)
 	}
 }

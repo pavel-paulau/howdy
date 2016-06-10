@@ -51,5 +51,4 @@ Limitations (aka to-do list)
 
 Currently, there are a couple limitations:
 * Not all Telegram API are covered yet. For instance, it's not possible to send images or stickers.
-* Only one active client is supported.
 * Keyboard layout is ignored (all buttons are displayed as a column).

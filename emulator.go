@@ -48,25 +48,9 @@ func forwardMessages(rw http.ResponseWriter, req *http.Request) {
 		log.Error("failed to upgrade to websockets", "err", err)
 		return
 	}
+
 	isOpen := true
-
-	go func() {
-		defer conn.Close()
-
-		for {
-			repsponse := <-messages
-
-			if !isOpen {
-				messages <- repsponse
-				break
-			}
-
-			if err := conn.WriteJSON(&repsponse); err != nil {
-				log.Error("failed to write data", "err", err)
-				break
-			}
-		}
-	}()
+	var myUser int
 
 	go func() {
 		defer func() {
@@ -80,7 +64,31 @@ func forwardMessages(rw http.ResponseWriter, req *http.Request) {
 				log.Error("failed to read data", "err", err)
 				break
 			}
+			myUser = message.UserID
 			sendUpdateToBot(message)
+		}
+	}()
+
+	go func() {
+		defer conn.Close()
+
+		for {
+			response := <-messages
+
+			if !isOpen {
+				messages <- response
+				break
+			}
+
+			if response.ChatID != myUser {
+				messages <- response
+				continue
+			}
+
+			if err := conn.WriteJSON(&response); err != nil {
+				log.Error("failed to write data", "err", err)
+				break
+			}
 		}
 	}()
 }

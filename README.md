@@ -54,3 +54,28 @@ Limitations (aka to-do list)
 Currently, there are a couple limitations:
 * Not all Telegram API are covered yet. For instance, it's not possible to send images or stickers.
 * Keyboard layout is ignored (all buttons are displayed as a column).
+
+Building from the source
+------------------------
+
+First, install these dependencies:
+
+```
+go get -u github.com/kardianos/govendor
+go get -u github.com/jteeuwen/go-bindata/...
+```
+
+Pull third-party packages into vendor folder:
+
+```
+govendor sync
+```
+
+Build the emulator:
+
+```
+go-bindata --debug app/...
+go build
+```
+
+Note: the last step is equivalent to running "make".

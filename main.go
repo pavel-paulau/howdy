@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-
-	"bitbucket.org/tebeka/nrsc"
 )
 
 const (
@@ -21,7 +19,7 @@ func main() {
 
 	http.HandleFunc("/webhook", forwardMessages)
 	http.HandleFunc("/bottoken/sendMessage", mockTelegram)
-	nrsc.Handle("/")
+	http.HandleFunc("/", staticHandler)
 
 	handler := accessLog(http.DefaultServeMux)
 

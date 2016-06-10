@@ -27,6 +27,7 @@ bot
 .idea
 
 build
+bindata.go
 
 vendor/bitbucket.org
 vendor/github.com

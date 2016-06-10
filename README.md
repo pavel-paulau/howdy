@@ -27,6 +27,8 @@ $ ./howdy_linux_amd64
 	.:: Please go to http://127.0.0.1:8081/index.html ::.
 ```
 
+Note: you need to "chmod +x" binaries on Unix-like platforms.
+
 Alternatively, you can pull the latest [Docker image](https://hub.docker.com/r/pavel/howdy/):
 
 ```

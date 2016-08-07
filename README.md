@@ -2,6 +2,7 @@ Telegram Chat Bot Emulator
 ==========================
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/pavel-paulau/howdy)](https://goreportcard.com/report/github.com/pavel-paulau/howdy)
+[![Docker Pulls](https://img.shields.io/docker/pulls/pavel/howdy.svg?maxAge=2592000)](https://hub.docker.com/r/pavel/howdy/)
 
 Howdy is an easy-to-use Telegram emulator for developing chat bots on Windows, Mac, and Linux. It doesn't require any certificates, public servers, or real Telegram clients.
 
